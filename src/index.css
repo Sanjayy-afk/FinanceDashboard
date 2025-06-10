@@ -1,0 +1,322 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.login-container {
+  display: flex;
+  height: 100vh;
+   overflow: hidden;
+}
+
+/* Left Side */
+.left-pane {
+  width: 70%;
+  background-color: #ffcd42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #111;
+  font-size: 2rem;
+  padding: 2rem;
+  text-align: center;
+  flex-shrink: 1;
+  transition: all 0.3s ease;
+}
+
+/* Right Side */
+.right-pane {
+  width: 30%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.login-form {
+  width: 80%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.login-form input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form button {
+  padding: 0.75rem;
+  background-color: #ffcd42;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #f1b800;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  background-color: #ffcd42;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.main-option {
+  width: 100%;
+}
+
+.menu-group {
+  width: 100%;
+}
+
+.toggle-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000;
+  cursor: pointer;
+  
+}
+
+/* ✅ Make sub-option fully fill sidebar without gaps */
+.sub-option {
+  width: 100%;
+  background-color: #fff9c4;  /* 🟡 keep it here, not in `.hidden` */
+  overflow: hidden;
+  padding: 0;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+  box-sizing: border-box;
+}
+
+.sub-option a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #000;
+  text-decoration: none;
+}
+
+/* When shown */
+.sub-option.active {
+  max-height: 200px;
+  opacity: 1;
+  padding: 0.5rem 0;
+}
+
+
+.sub-option a:hover {
+  background-color: #ffef9c; /* subtle hover highlight */
+}
+
+
+
+/* Main content */
+.content {
+  width: 80%;
+  padding: 2rem;
+  padding: 0 ;
+
+  background-color: #ffffff;
+}
+
+/* Dashboard top bar inside the content area */
+.dashboard-header {
+  position: sticky;
+  top: 0;                    /* stick to the very top */
+  left: 0;
+  right: 0;
+  z-index: 100;              /* sit above other content */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.2rem 0.1rem;     /* your existing padding */
+  background-color: #f1eded; /* match your content bg */
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0;                 /* ensure no extra margins */
+}
+
+
+/* Username styling */
+.dashboard-header .username {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Optional: tweak button sizes in header */
+.dashboard-header .btn {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+}
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* hide dropdown by default */
+.user-menu .sub-option {
+  overflow: hidden;
+  position: absolute;
+  top: 100%;            /* right below the button */
+  right: 0;   
+  left: 0;          /* align to the right edge of the menu */
+  background: #ededec;  /* light yellow */
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 0.5rem 0;
+  min-width: 120px;
+  z-index: 10;
+  transition: 
+    max-height 0.3s ease, 
+    opacity 0.3s ease, 
+    transform 0.3s ease,
+    padding 0.3s ease;
+}
+
+/* each link fills the width */
+.user-menu .sub-option a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #000;
+  text-decoration: none;
+}
+
+.user-menu .sub-option a:hover {
+  background: #ffef9c;
+}
+
+/* when .active is added, show it */
+.user-menu .sub-option.active {
+  display: block;
+  
+}
+
+/* Container for the three boxes */
+.info-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* Shared box styling */
+.info-box {
+  flex: 1;                /* each grows equally */
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual colors */
+.info-box.blue {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.info-box.green {
+  flex: 1.5;
+  background-color: #5cb85c;
+  color: #ffffff;
+}
+
+.info-box.mustard {
+  background-color: #ffcd42;
+  color: #000000;
+}
+#topUpBox {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#topUpBox:hover {
+  background-color: #ffca28;
+}
+
+.chart-row {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 5rem;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem;
+  margin-left: 1rem;
+}
+
+.chart-container {
+  flex: 1;
+  max-width: 400px;
+  height: 300px;              /* give it some height */
+}
+
+.chart-container canvas {
+  width: 100%;
+  height: 100% ;
+}
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+  .left-pane {
+    width: 50%;
+  }
+  .right-pane {
+    width: 50%;
+  }
+}
+
+/* Mobile: hide yellow side */
+@media (max-width: 600px) {
+  .left-pane {
+    display: none;
+  }
+
+  .right-pane {
+    width: 100%;
+  }
+}
